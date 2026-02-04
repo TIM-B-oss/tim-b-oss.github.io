@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин Форумов и RP Проектов</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Иконки -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0f0f13;
+            --card-bg: #1a1a20;
+            --primary: #7000ff; /* Фиолетовый неон */
+            --accent: #00d4ff;  /* Голубой неон */
+            --text-color: #ffffff;
+            --text-secondary: #a0a0a0;
+            --danger: #ff4757;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header / Hero */
+        header {
+            text-align: center;
+            padding: 100px 0 50px;
+            background: radial-gradient(circle at center, #2a0a4d 0%, var(--bg-color) 70%);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .btn-main {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 0 20px rgba(112, 0, 255, 0.4);
+        }
+
+        .btn-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(112, 0, 255, 0.6);
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title i {
+            margin-right: 15px;
+            color: var(--primary);
+        }
+
+        /* Grid for cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        /* Card Style */
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid #333;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .buy-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--primary);
+            color: white;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .buy-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Blur effect for "Coming Soon" */
+        .blur-card {
+            filter: grayscale(100%);
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .coming-soon-badge {
+            display: inline-block;
+            background: #333;
+            padding: 5px 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Info Section */
+        .info-box {
+            background: rgba(112, 0, 255, 0.1);
+            border: 1px solid var(--primary);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .warning {
+            color: var(--danger);
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            border: 1px solid var(--danger);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            background: #000;
+            margin-top: 50px;
+            color: var(--text-secondary);
+        }
+
+        .reviews-link {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Главный экран -->
+    <header>
+        <div class="container">
+            <h1>RP Store</h1>
+            <p class="subtitle">Покупка форумов, готовых проектов и настройка Discord серверов. Качественно и быстро.</p>
+            <a href="https://t.me/IlyaGrass" target="_blank" class="btn-main">
+                <i class="fab fa-telegram-plane"></i> Связаться с менеджером
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Секция Форумы -->
+        <section id="forums">
+            <h2 class="section-title"><i class="fas fa-fire"></i> Форумы</h2>
+            <div class="grid">
+                <!-- Товар 1 -->
+                <div class="card">
+                    <h3>Grand RP</h3>
+                    <div class="price">80 ₽</div>
+                    <a href="https://t.me/IlyaGrass" target="_blank" class="buy-btn">Купить</a>
+                </div>
+                <!-- Товар 2 -->
+                <div class="card">
+                    <h3>GTA 5 RP</h3>
+                    <div class="price">60 ₽</div>
+                    <a href="https://t.me/IlyaGrass" target="_blank" class="buy-btn">Купить</a>
+                </div>
+                <!-- Товар 3 -->
+                <div class="card">
+                    <h3>GTA 5 RP (NEW)</h3>
+                    <div class="price">120 ₽</div>
+                    <a href="https://t.me/IlyaGrass" target="_blank" class="buy-btn">Купить</a>
+                </div>
+                <!-- Товар 4 -->
+                <div class="card">
+                    <h3>Black Russia</h3>
+                    <div class="price">90 ₽</div>
+                    <a href="https://t.me/IlyaGrass" target="_blank" class="buy-btn">Купить</a>
+                </div>
+                <!-- Товар 5 -->
+                <div class="card">
+                    <h3>Arizona RP 2024</h3>
+                    <div class="price">150 ₽</div>
+                    <a href="https://t.me/IlyaGrass" target="_blank" class="buy-btn">Купить</a>
+                </div>
+                <!-- Товар 6 -->
+                <div class="card">
+                    <h3>Rodina RP</h3>
+                    <div class="price">150 ₽</div>
+                    <a href="https://t.me/IlyaGrass" target="_blank" class="buy-btn">Купить</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция Сайты -->
+        <section id="websites">
+            <h2 class="section-title"><i class="fas fa-laptop-code"></i> Сайты</h2>
+            <div class="card" style="text-align: center; max-width: 400px; margin: 0 auto; border-style: dashed;">
+                <h3>Раздел в разработке</h3>
+                <div class="coming-soon-badge">Скоро!</div>
+            </div>
+        </section>
+
+        <!-- Секция Проекты -->
+        <section id="projects">
+            <h2 class="section-title"><i class="fas fa-user-ninja"></i> RP Проекты</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Проект Rodina Roleplay</h3>
+                    <div class="price">450 ₽</div>
+                    <a href="https://t.me/IlyaGrass" target="_blank" class="buy-btn">Купить</a>
+                </div>
+                <div class="card">
+                    <h3>Проект Arizona Roleplay</h3>
+                    <div class="price">450 ₽</div>
+                    <a href="https://t.me/IlyaGrass" target="_blank" class="buy-btn">Купить</a>
+                </div>
+                <div class="card">
+                    <h3>Проект CRMP (Любой)</h3>
+                    <div class="price">250 ₽</div>
+                    <a href="https://t.me/IlyaGrass" target="_blank" class="buy-btn">Купить</a>
+                </div>
+                <div class="card">
+                    <h3>Проект SAMP (Любой)</h3>
+                    <div class="price">350 ₽</div>
+                    <a href="https://t.me/IlyaGrass" target="_blank" class="buy-btn">Купить</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция Остальное -->
+        <section id="other">
+            <h2 class="section-title"><i class="fas fa-eye"></i> Остальное</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Настройка Discord сервера</h3>
+                    <div class="price">20 ₽</div>
+                    <a href="https://t.me/IlyaGrass" target="_blank" class="buy-btn">Заказать</a>
+                </div>
+                <div class="card">
+                    <h3>Создание Discord сервера</h3>
+                    <p style="color: #aaa; margin-bottom: 10px;">Для проекта или общения</p>
+                    <div class="price">25 ₽</div>
+                    <a href="https://t.me/IlyaGrass" target="_blank" class="buy-btn">Заказать</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Важная информация -->
+        <div class="info-box">
+            <h3><i class="fas fa-info-circle"></i> Важная информация</h3>
+            <p style="margin-top: 15px;">
+                ✨ Для RP проекта от вас требуется <strong>ХОСТ</strong> и капля терпения.
+            </p>
+            <p style="margin-top: 10px;">
+                Менеджер: <a href="https://t.me/IlyaGrass" style="color: var(--accent); font-weight: bold;">@IlyaGrass</a>
+            </p>
+            
+            <div class="warning">
+                <i class="fas fa-exclamation-triangle"></i> ДЕНЬГИ ЗА ПОКУПКУ НЕ ВОЗВРАЩАЮТСЯ!
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2024 RP Store. Все права защищены.</p>
+        <p style="margin-top: 10px;">
+            <a href="https://t.me/+-kCkOpFfXhE4Zjhi" class="reviews-link" target="_blank">
+                <i class="fas fa-star"></i> Читать отзывы в Telegram
+            </a>
+        </p>
+    </footer>
+
+</body>
+</html>
